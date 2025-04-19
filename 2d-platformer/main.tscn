@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://b0g5hv5c43qml"]
+[gd_scene load_steps=10 format=3 uid="uid://b0g5hv5c43qml"]
 
 [ext_resource type="Texture2D" uid="uid://cbd5bxqflj72d" path="res://Blue.png" id="1_c0fdl"]
 [ext_resource type="Texture2D" uid="uid://c27ohofkfetkn" path="res://Terrain (16x16).png" id="2_sw6ml"]
+[ext_resource type="PackedScene" uid="uid://crfixdofujbi3" path="res://finish.tscn" id="3_ebuft"]
 [ext_resource type="PackedScene" uid="uid://twofhuoqow7c" path="res://Scenes/main_char.tscn" id="3_fumro"]
 [ext_resource type="PackedScene" uid="uid://djlq28rgev27a" path="res://Scenes/main_char2.tscn" id="4_qg3ey"]
 [ext_resource type="PackedScene" uid="uid://blumgbhlxr8ns" path="res://Scenes/collectable.tscn" id="5_qwndt"]
@@ -191,8 +192,10 @@ sources/0 = SubResource("TileSetAtlasSource_30scb")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 texture_filter = 1
-offset_right = 2204.0
-offset_bottom = 673.0
+offset_left = -46.0
+offset_top = -5.0
+offset_right = 2158.0
+offset_bottom = 668.0
 texture = ExtResource("1_c0fdl")
 stretch_mode = 1
 
@@ -217,33 +220,61 @@ position_smoothing_enabled = true
 [node name="CharacterBody2D3" parent="." instance=ExtResource("3_fumro")]
 position = Vector2(-1189, -913)
 
-[node name="Collectable" parent="." instance=ExtResource("5_qwndt")]
-position = Vector2(-310, -259)
-
-[node name="Collectable2" parent="." instance=ExtResource("5_qwndt")]
-position = Vector2(202, 323)
-
-[node name="Collectable3" parent="." instance=ExtResource("5_qwndt")]
-position = Vector2(572, 278)
-
-[node name="Collectable4" parent="." instance=ExtResource("5_qwndt")]
-position = Vector2(723, 29)
-
-[node name="Collectable5" parent="." instance=ExtResource("5_qwndt")]
-position = Vector2(468, -59)
-
-[node name="Collectable6" parent="." instance=ExtResource("5_qwndt")]
-position = Vector2(914, 137)
-
-[node name="Collectable7" parent="." instance=ExtResource("5_qwndt")]
-position = Vector2(1560, -11)
-
 [node name="GameManager" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource("6_nk1s4")
 
-[node name="Collectable8" parent="." instance=ExtResource("5_qwndt")]
+[node name="Collectibles" type="Node" parent="."]
+
+[node name="Collectable" parent="Collectibles" instance=ExtResource("5_qwndt")]
+position = Vector2(-310, -259)
+
+[node name="Collectable2" parent="Collectibles" instance=ExtResource("5_qwndt")]
+position = Vector2(202, 323)
+
+[node name="Collectable3" parent="Collectibles" instance=ExtResource("5_qwndt")]
+position = Vector2(572, 278)
+
+[node name="Collectable4" parent="Collectibles" instance=ExtResource("5_qwndt")]
+position = Vector2(723, 29)
+
+[node name="Collectable5" parent="Collectibles" instance=ExtResource("5_qwndt")]
+position = Vector2(468, -59)
+
+[node name="Collectable6" parent="Collectibles" instance=ExtResource("5_qwndt")]
+position = Vector2(914, 137)
+
+[node name="Collectable7" parent="Collectibles" instance=ExtResource("5_qwndt")]
+position = Vector2(1560, -11)
+
+[node name="Collectable8" parent="Collectibles" instance=ExtResource("5_qwndt")]
 position = Vector2(1247, 277)
 
-[node name="Collectable9" parent="." instance=ExtResource("5_qwndt")]
+[node name="Collectable9" parent="Collectibles" instance=ExtResource("5_qwndt")]
 position = Vector2(1566, 225)
+
+[node name="SceneObjs" type="Node" parent="."]
+
+[node name="Finish" parent="SceneObjs" instance=ExtResource("3_ebuft")]
+
+[node name="UI" type="Node" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="UI"]
+
+[node name="Panel" type="Panel" parent="UI/CanvasLayer"]
+offset_right = 188.0
+offset_bottom = 75.0
+size_flags_horizontal = 0
+
+[node name="PointsLabel" type="Label" parent="UI/CanvasLayer/Panel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 20
+text = "Points: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
